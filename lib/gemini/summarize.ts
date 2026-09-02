@@ -1,3 +1,4 @@
+import { summaryJsonSchema } from "../utils/types";
 import { ai } from "./client";
 import { ApiError } from "@/lib/utils/errors";
 
@@ -27,6 +28,11 @@ export async function runSummaryInteraction(
         { type: "document", uri: file.uri, mime_type: file.mimeType },
         { type: "text", text: customPrompt || DEFAULT_PROMPT },
       ],
+      response_format: {
+        type: "text",
+        mime_type: "application/json",
+        schema: summaryJsonSchema,
+      },
     });
 
     if (!interaction.output_text) {
