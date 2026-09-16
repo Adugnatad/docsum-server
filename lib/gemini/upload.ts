@@ -4,6 +4,10 @@ import { ApiError } from "@/lib/utils/errors";
 const MAX_FILE_SIZE = 20 * 1024 * 1024;
 const ALLOWED_MIME_TYPES = [
   "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "text/markdown",
+  "application/json",
   "text/plain",
   "image/jpeg",
   "image/png",
