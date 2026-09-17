@@ -1,7 +1,8 @@
 import { ai } from "./client";
 import { ApiError } from "@/lib/utils/errors";
 
-const MAX_FILE_SIZE = 20 * 1024 * 1024;
+// Keep enough room below Vercel's request-body limit for multipart overhead.
+export const MAX_FILE_SIZE = 4 * 1024 * 1024;
 const ALLOWED_MIME_TYPES = [
   "application/pdf",
   "application/msword",
