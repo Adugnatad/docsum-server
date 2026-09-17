@@ -22,14 +22,21 @@ export async function uploadFile(file: File | null): Promise<UploadResult> {
   if (!file) {
     throw new ApiError("No file provided", 400, "MISSING_FILE");
   }
-
-  // if (file.size > MAX_FILE_SIZE) {
-  //   throw new ApiError(
-  //     `File exceeds max size of ${MAX_FILE_SIZE / (1024 * 1024)}MB`,
-  //     413,
-  //     "FILE_TOO_LARGE",
-  //   );
-  // }
+  console.log(
+    "Uploading file:",
+    file.name,
+    "size:",
+    file.size,
+    "type:",
+    file.type,
+  );
+  if (file.size > MAX_FILE_SIZE) {
+    throw new ApiError(
+      `File exceeds max size of ${MAX_FILE_SIZE / (1024 * 1024)}MB`,
+      413,
+      "FILE_TOO_LARGE",
+    );
+  }
 
   const mimeType = file.type || "application/octet-stream";
   if (!ALLOWED_MIME_TYPES.includes(mimeType)) {
